@@ -185,6 +185,17 @@ typedef struct
 	__vo uint32_t		FLTR;
 }I2C_RegDef_t;
 
+typedef struct
+{
+	__vo uint32_t		SR;
+	__vo uint32_t		DR;
+	__vo uint32_t		BRR;
+	__vo uint32_t		CR1;
+	__vo uint32_t		CR2;
+	__vo uint32_t		RC3;
+	__vo uint32_t		GTPR;
+}USART_RegDef_t;
+
 /* Peripheral Definitions */
 
 #define GPIOA					((GPIO_RegDef_t *)GPIOA_BASEADDR)
@@ -213,6 +224,15 @@ typedef struct
 #define I2C1					((I2C_RegDef_t *)I2C1_BASEADDR)
 #define I2C2					((I2C_RegDef_t *)I2C2_BASEADDR)
 #define I2C3					((I2C_RegDef_t *)I2C3_BASEADDR)
+
+#define USART1					((USART_RegDef_t *)USART1_BASEADDR)
+#define USART2					((USART_RegDef_t *)USART2_BASEADDR)
+#define USART3					((USART_RegDef_t *)USART3_BASEADDR)
+#define USART6					((USART_RegDef_t *)USART6_BASEADDR)
+#define UART4					((USART_RegDef_t *)UART4_BASEADDR)		//(USART_RegDef_t *) is used for UART also
+#define UART5					((USART_RegDef_t *)UART5_BASEADDR)		//(USART_RegDef_t *) is used for UART also
+#define UART7					((USART_RegDef_t *)UART7_BASEADDR)		//(USART_RegDef_t *) is used for UART also
+#define UART8					((USART_RegDef_t *)UART8_BASEADDR)		//(USART_RegDef_t *) is used for UART also
 
 /* Clock Enable Macros for GPIOx peripherals */
 
@@ -465,6 +485,62 @@ typedef struct
 
 /* Bit position definitions of I2C_TRISE */
 #define I2C_TRISE_TRISE_BIT_POS		0
+
+/********************* Bit position definitions of USART/UART Peripheral *****************************/
+
+/* Bit position definitions of USART/UART_SR */
+#define USART_SR_PE_BIT_POS			0
+#define USART_SR_FE_BIT_POS			1
+#define USART_SR_NF_BIT_POS			2
+#define USART_SR_ORE_BIT_POS		3
+#define USART_SR_IDLE_BIT_POS		4
+#define USART_SR_RXNE_BIT_POS		5
+#define USART_SR_TC_BIT_POS			6
+#define USART_SR_TXE_BIT_POS		7
+#define USART_SR_LBD_BIT_POS		8
+#define USART_SR_CTS_BIT_POS		9
+
+/* Bit position definitions of USART/UART_CR1 */
+#define USART_CR1_SBK_BIT_POS		0
+#define USART_CR1_RWU_BIT_POS		1
+#define USART_CR1_RE_BIT_POS		2
+#define USART_CR1_TE_BIT_POS		3
+#define USART_CR1_IDLEIE_BIT_POS	4
+#define USART_CR1_RXNEIE_BIT_POS	5
+#define USART_CR1_TCIE_BIT_POS		6
+#define USART_CR1_TXEIE_BIT_POS		7
+#define USART_CR1_PEIE_BIT_POS		8
+#define USART_CR1_PS_BIT_POS		9
+#define USART_CR1_PCE_BIT_POS		10
+#define USART_CR1_WAKE_BIT_POS		11
+#define USART_CR1_M_BIT_POS			12
+#define USART_CR1_UE_BIT_POS		13
+#define USART_CR1_OVER8_BIT_POS		15
+
+/* Bit position definitions of USART/UART_CR2 */
+#define USART_CR2_ADD3_BIT_POS		3
+#define USART_CR2_LBDL_BIT_POS		5
+#define USART_CR2_LBDIE_BIT_POS		6
+#define USART_CR2_LBCL_BIT_POS		8
+#define USART_CR2_CPHA_BIT_POS		9
+#define USART_CR2_CPOL_BIT_POS		10
+#define USART_CR2_CLKEN_BIT_POS		11
+#define USART_CR2_STOP_BIT_POS		13
+#define USART_CR2_LINEN_BIT_POS		14
+
+/* Bit position definitions of USART/UART_CR3 */
+#define USART_CR3_EIE_BIT_POS		0
+#define USART_CR3_IREN_BIT_POS		1
+#define USART_CR3_IRLP_BIT_POS		2
+#define USART_CR3_HDSEL_BIT_POS		3
+#define USART_CR3_NACK_BIT_POS		4
+#define USART_CR3_SCEN_BIT_POS		5
+#define USART_CR3_DMAR_BIT_POS		6
+#define USART_CR3_DMAT_BIT_POS		7
+#define USART_CR3_RTSE_BIT_POS		8
+#define USART_CR3_CTSE_BIT_POS		9
+#define USART_CR3_CTSIE_BIT_POS		10
+#define USART_CR3_ONEBIT_BIT_POS	11
 
 /******************************* Some generic macros ***********************************/
 #define ENABLE				1
