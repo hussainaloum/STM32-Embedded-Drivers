@@ -88,6 +88,13 @@ typedef struct
 #define USART_HW_FLOW_CTRL_RTS    	2
 #define USART_HW_FLOW_CTRL_CTS_RTS	3
 
+/*
+ * USART flags
+ */
+#define USART_FLAG_TXE 			( 1 << USART_SR_TXE_BIT_POS)
+#define USART_FLAG_RXNE 		( 1 << USART_SR_RXNE_BIT_POS)
+#define USART_FLAG_TC 			( 1 << USART_SR_TC_BIT_POS)
+
 /************************************************
  	 APIs supported by this USART/UART driver
 ************************************************/
@@ -102,8 +109,8 @@ void USART_DeInit(USART_RegDef_t *pUSARTx);
 /*
  * Data send and receive
  * */
-void USART_SendData(USART_RegDef_t *pUSARTx, uint8_t *pTxBuffer, uint32_t length);
-void USART_ReceiveData(USART_RegDef_t *pUSARTx, uint8_t *pRxBuffer, uint32_t length);
+void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
+void USART_ReceiveData(USART_Handle_t *pUSARTHandle, uint8_t *pRxBuffer, uint32_t length);
 //uint8_t USART_SendDataWithIT(USART_Handle_t *pSPIHandle, uint8_t *pTxBuffer, uint32_t length);			//For use with interrupt
 //uint8_t USART_ReceiveDataWithIT(USART_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t length);		//For use with interrupt
 
@@ -119,5 +126,7 @@ void USART_IRQHandling(USART_Handle_t *pHandle);
  * Other Peripheral control APIs
  * */
 void USART_SetBaudRate(USART_RegDef_t *pUSARTx, uint32_t BaudRate);
+bool USART_GetFlagStatus(USART_RegDef_t *pUSARTx, uint8_t FlagName);
+void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t ENorDI);
 
 #endif /* INC_STM32F439ZI_USART_DRIVER_H_ */
