@@ -26,6 +26,11 @@
 #define NVIC_ICER3			((__vo uint32_t*)0XE000E18C)
 
 /*
+ * ARM Cortex Mx Processor Priority Register Address Calculation
+ */
+#define NVIC_PR_BASE_ADDR 	((__vo uint32_t*)0xE000E400)
+
+/*
  * ARM Cortex M4 processor Priority register Address calculation
  * */
 #define NVIC_PR_BASEADDR	((__vo uint32_t *)0xE000E400)
@@ -376,6 +381,14 @@ typedef struct
 #define IRQ_NO_SPI1				35
 #define IRQ_NO_SPI2				36
 #define IRQ_NO_SPI3				51
+#define IRQ_NO_USART1			37
+#define IRQ_NO_USART2			38
+#define IRQ_NO_USART3			39
+#define IRQ_NO_UART4			52
+#define IRQ_NO_UART5			53
+#define IRQ_NO_USART6			71
+#define IRQ_NO_UART7			82
+#define IRQ_NO_UART8			83
 
 /* Macros for all the possible priority levels */
 #define NVIC_IRQ_PRI0			0

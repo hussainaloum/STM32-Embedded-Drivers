@@ -27,6 +27,12 @@ typedef struct
 {
 	USART_Config_t	USARTConfig;
 	USART_RegDef_t	*pUSARTx;
+	uint8_t *pTxBuffer;
+	uint8_t *pRxBuffer;
+	uint32_t TxLen;
+	uint32_t RxLen;
+	uint8_t TxBusyState;
+	uint8_t RxBusyState;
 }USART_Handle_t;
 
 /*
@@ -95,6 +101,23 @@ typedef struct
 #define USART_FLAG_RXNE 		( 1 << USART_SR_RXNE_BIT_POS)
 #define USART_FLAG_TC 			( 1 << USART_SR_TC_BIT_POS)
 
+/*
+ * Application states
+ */
+#define USART_BUSY_IN_RX 		1
+#define USART_BUSY_IN_TX 		2
+#define USART_READY 			0
+
+
+#define USART_EVENT_TX_CMPLT   	0
+#define	USART_EVENT_RX_CMPLT   	1
+#define	USART_EVENT_IDLE      	2
+#define	USART_EVENT_CTS       	3
+#define	USART_EVENT_PE       	4
+#define	USART_ERR_FE     		5
+#define	USART_ERR_NE    	 	6
+#define	USART_ERR_ORE    		7
+
 /************************************************
  	 APIs supported by this USART/UART driver
 ************************************************/
@@ -111,8 +134,8 @@ void USART_DeInit(USART_RegDef_t *pUSARTx);
  * */
 void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
 void USART_ReceiveData(USART_Handle_t *pUSARTHandle, uint8_t *pRxBuffer, uint32_t length);
-//uint8_t USART_SendDataWithIT(USART_Handle_t *pSPIHandle, uint8_t *pTxBuffer, uint32_t length);			//For use with interrupt
-//uint8_t USART_ReceiveDataWithIT(USART_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t length);		//For use with interrupt
+uint8_t USART_SendDataWithIT(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t length);			//For use with interrupt
+uint8_t USART_ReceiveDataWithIT(USART_Handle_t *pUSARTHandle, uint8_t *pRxBuffer, uint32_t length);		//For use with interrupt
 
 
 /*
@@ -128,5 +151,10 @@ void USART_IRQHandling(USART_Handle_t *pHandle);
 void USART_SetBaudRate(USART_RegDef_t *pUSARTx, uint32_t BaudRate);
 bool USART_GetFlagStatus(USART_RegDef_t *pUSARTx, uint8_t FlagName);
 void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t ENorDI);
+
+/*
+ * Application Callbacks
+ */
+void USART_ApplicationEventCallback(USART_Handle_t *pUSARTHandle,uint8_t ApEv);
 
 #endif /* INC_STM32F439ZI_USART_DRIVER_H_ */
