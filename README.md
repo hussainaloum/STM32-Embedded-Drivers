@@ -1,7 +1,7 @@
 # STM32-Embedded-Drivers
 Bare metal peripheral drivers for STM32F439xx Cortex-M4 CPUs
 
-At this time this repo has drivers for GPIO and SPI.
+At this time this repo has drivers for GPIO, SPI, USART and I2C.
 
 
 
