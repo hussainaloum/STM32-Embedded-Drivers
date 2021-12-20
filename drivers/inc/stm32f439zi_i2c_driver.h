@@ -53,7 +53,7 @@ typedef struct
 #define I2C_FM_DUTY_16_9		1
 
 /* I2C related status flags definitions */
-#define I2C_FLAG_TXE				(1 << I2C_SR1_TXNE_BIT_POS)
+#define I2C_FLAG_TXE				(1 << I2C_SR1_TXE_BIT_POS)
 #define I2C_FLAG_RXNE				(1 << I2C_SR1_RXNE_BIT_POS)
 #define I2C_FLAG_SB					(1 << I2C_SR1_SB_BIT_POS)
 #define I2C_FLAG_ADDR				(1 << I2C_SR1_ADDR_BIT_POS)
@@ -101,13 +101,17 @@ void I2C_DeInit(I2C_RegDef_t *pI2Cx);
  * Data send and receive
  * */
 void I2C_MasterSendData(I2C_Handle_t *pI2CHandle,uint8_t *pTxbuffer, uint32_t Len, uint8_t SlaveAddr, uint8_t Sr);
-void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle, uint8_t *pRxbuffer, uint32_t Len, uint8_t SlaveAddrs, uint8_t Sr);
+void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle, uint8_t *pRxbuffer, uint8_t Len, uint8_t SlaveAddrs, uint8_t Sr);
+uint8_t I2C_MasterSendDataIT(I2C_Handle_t *pI2CHandle, uint8_t *pTxbuffer, uint32_t Len, uint8_t SlaveAddr, uint8_t Sr);
+uint8_t I2C_MasterReceiveDataIT(I2C_Handle_t *pI2CHandle, uint8_t *pRxbuffer, uint8_t Len, uint8_t SlaveAddrs, uint8_t Sr);
 
 /*
  * IRQ Configuration and ISR handling
  * */
 void I2C_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void I2C_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
+void I2C_EV_IRQHandling(I2C_Handle_t *pI2CHandle);
+void I2C_ER_IRQHandling(I2C_Handle_t *pI2CHandle);
 
 /*
  * Application Callback
@@ -120,5 +124,6 @@ void I2C_ApplicationEventCallback(I2C_Handle_t *pI2CHandle, uint8_t AppEv);
 bool I2C_GetFlagStatus(I2C_RegDef_t *pI2Cx, uint32_t FlagName);
 void I2C_ManageAcking(I2C_RegDef_t *pI2Cx, uint8_t EnorDi);
 void I2C_CloseReceiveData(I2C_Handle_t *pI2CHandle);
+void I2C_CloseSendData(I2C_Handle_t *pI2CHandle);
 
 #endif /* INC_STM32F439ZI_I2C_DRIVER_H_ */
