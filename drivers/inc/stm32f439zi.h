@@ -381,6 +381,12 @@ typedef struct
 #define IRQ_NO_SPI1				35
 #define IRQ_NO_SPI2				36
 #define IRQ_NO_SPI3				51
+#define IRQ_NO_I2C1_EV			31
+#define IRQ_NO_I2C1_ER			32
+#define IRQ_NO_I2C2_EV			33
+#define IRQ_NO_I2C2_ER			34
+#define IRQ_NO_I2C3_EV			72
+#define IRQ_NO_I2C3_ER			73
 #define IRQ_NO_USART1			37
 #define IRQ_NO_USART2			38
 #define IRQ_NO_USART3			39
@@ -472,7 +478,7 @@ typedef struct
 #define I2C_SR1_ADD10_BIT_POS		3
 #define I2C_SR1_STOPF_BIT_POS		4
 #define I2C_SR1_RXNE_BIT_POS		6
-#define I2C_SR1_TXNE_BIT_POS		7
+#define I2C_SR1_TXE_BIT_POS			7
 #define I2C_SR1_BERR_BIT_POS		8
 #define I2C_SR1_ARLO_BIT_POS		9
 #define I2C_SR1_AF_BIT_POS			10
